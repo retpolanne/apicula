@@ -1,0 +1,8 @@
+IO_LOC "clk" IOT40B;
+IO_LOC "key" IOR35B;
+IO_LOC "led[0]" IOL47A;
+IO_LOC "led[1]" IOL47B;
+IO_LOC "led[2]" IOT49A;
+IO_LOC "led[3]" IOT49B;
+IO_LOC "led[4]" IOT51A;
+IO_LOC "led[5]" IOT51B;

@@ -337,7 +337,7 @@ def fse_luts(fse, ttyp):
 def fse_osc(device, fse, ttyp):
     osc = {}
 
-    if device in {'GW1N-4', 'GW1N-9', 'GW1N-9C', 'GW2A-18'}:
+    if device in {'GW1N-4', 'GW1N-9', 'GW1N-9C', 'GW2A-18', 'GW2AR-18C'}:
         bel = osc.setdefault(f"OSC", Bel())
     elif device in {'GW1NZ-1', 'GW1NS-4'}:
         bel = osc.setdefault(f"OSCZ", Bel())
@@ -792,7 +792,7 @@ def add_attr_val(dev, logic_table, attrs, attr, val):
             break
 
 def get_pins(device):
-    if device not in {"GW1N-1", "GW1NZ-1", "GW1N-4", "GW1N-9", "GW1NR-9", "GW1N-9C", "GW1NR-9C", "GW1NS-2", "GW1NS-2C", "GW1NS-4", "GW1NSR-4C", "GW2A-18"}:
+    if device not in {"GW1N-1", "GW1NZ-1", "GW1N-4", "GW1N-9", "GW1NR-9", "GW1N-9C", "GW1NR-9C", "GW1NS-2", "GW1NS-2C", "GW1NS-4", "GW1NSR-4C", "GW2A-18", "GW2AR-18C"}:
         raise Exception(f"unsupported device {device}")
     pkgs = pindef.all_packages(device)
     res = {}
@@ -879,6 +879,11 @@ def json_pinout(device):
         return (pkgs, {
             "GW2A-18": pins
         }, bank_pins)
+    elif device == "GW2AR-18C":
+        pkgs, pins, bank_pins = get_pins("GW2AR-18C")
+        return (pkgs, {
+            "GW2AR-18C": pins
+        }, bank_pins)
     else:
         raise Exception("unsupported device")
 
@@ -926,6 +931,8 @@ _osc_ports = {('OSCZ', 'GW1NZ-1'): ({}, {'OSCOUT' : (0, 5, 'OF3'), 'OSCEN': (0, 
               ('OSC',  'GW1N-9C'):  ({'OSCOUT': 'Q4'}, {}),
               # XXX check this!
               ('OSC',  'GW2A-18'):  ({'OSCOUT': 'Q4'}, {}),
+              # XXX check this!
+              ('OSC',  'GW2AR-18C'):  ({'OSCOUT': 'Q4'}, {}),
               # XXX unsupported boards, pure theorizing
               ('OSCO', 'GW1N-2'):  ({'OSCOUT': 'Q7'}, {'OSCEN': (9, 1, 'B4')}),
               ('OSCW', 'GW2AN-18'):  ({'OSCOUT': 'Q4'}, {}),

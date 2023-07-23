@@ -73,6 +73,11 @@ params = {
         "device": "GW2A-18-PBGA256-8",
         "partnumber": "GW2A-LV18PG256C8/I7",
     },
+    "GW2AR-18C": {
+        "package": "QFN88",
+        "device": "GW2AR-18-QFN88-8",
+        "partnumber": "GW2AR-LV18QN88C8/I7",
+    },
 }[device]
 
 # utils
@@ -280,7 +285,7 @@ if __name__ == "__main__":
         name = pin.upper()
         cfg_attrs = set()
         chipdb.add_attr_val(db, 'CFG', cfg_attrs, attrids.cfg_attrids[f'{name}_AS_GPIO'], attrids.cfg_attrvals['YES'])
-        if device == 'GW2A-18':
+        if device == 'GW2A-18' or device == 'GW2AR-18C':
             bits = chipdb.get_shortval_fuses(db, fse['header']['grid'][61][0][-1], cfg_attrs, 'CFG')
         else:
             bits = chipdb.get_shortval_fuses(db, fse['header']['grid'][61][0][0], cfg_attrs, 'CFG')
